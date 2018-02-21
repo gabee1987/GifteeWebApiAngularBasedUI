@@ -11,6 +11,8 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 
+import { UserListService } from './services/userList.service';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -32,6 +34,9 @@ import { UserListComponent } from './components/user-list/user-list.component';
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
         ])
+    ],
+    providers: [
+        UserListService
     ]
 })
 export class AppModuleShared {

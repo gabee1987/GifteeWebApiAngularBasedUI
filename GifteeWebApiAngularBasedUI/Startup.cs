@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GifteeWebApiAngularBasedUI.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,6 +24,12 @@ namespace GifteeWebApiAngularBasedUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Database context
+            var connString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=GifteeDB;Integrated Security=True;Connect Timeout=30;";
+
+            services.AddDbContext<GifteeDbContext>(options => options.UseSqlServer(connString));
+
+            // Add framework services
             services.AddMvc();
         }
 

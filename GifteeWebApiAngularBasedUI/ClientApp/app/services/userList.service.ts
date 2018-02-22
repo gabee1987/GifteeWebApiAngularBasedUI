@@ -7,8 +7,8 @@ export class UserListService {
 
     constructor(private http: Http) { }
 
-    GetMakes() {
-        return this.http.get('/api/makes')
+    getUsers() {
+        return this.http.get('/api/users')
             .map(res => res.json());
     }
 }

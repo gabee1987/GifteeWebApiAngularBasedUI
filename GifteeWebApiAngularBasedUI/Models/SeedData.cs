@@ -16,43 +16,87 @@ namespace FromMeToYou.Models
             using (var context = new GifteeDbContext(
                 serviceProvider.GetRequiredService<DbContextOptions<GifteeDbContext>>()))
             {
-                // Look for any movies.
-                if (context.Users.Any())
-                {
-                    context.Database.ExecuteSqlCommand("DELETE from Users");   // Reset DB entities
-                }
-                context.Users.AddRange(
-                     new User
-                     {
-                         Email = "lili@gmail.com",
-                         FirstName = "Lili",
-                         LastName = "Vad",
-                         Password = "1234"
-                     },
-                     new User
-                     {
-                         Email = "nano@gmail.com",
-                         FirstName = "Nandor",
-                         LastName = "Takats",
-                         Password = "Nano1"
-                     },
-                     new User
-                     {
-                         Email = "tea@gmail.com",
-                         FirstName = "Laci",
-                         LastName = "Kis",
-                         Password = "2345"
-                     },
-                    new User
-                    {
-                        Email = "gabee1987@gmail.com",
-                        FirstName = "Gabee",
-                        LastName = "Koncz",
-                        Password = "6655"
-                    });
+                PopulateUsers(context);
+                PopulateGiftees(context);
 
                 context.SaveChanges();
             }
         }
+
+        #region Seed Users Table
+
+        private static void PopulateUsers(GifteeDbContext context)
+        {
+            // Look for any users.
+            if (context.Users.Any())
+            {
+                //context.Database.ExecuteSqlCommand("DELETE from Users");   // Reset DB entities
+                return;
+            }
+
+            else
+            {
+                context.Users.AddRange(
+                                     new User
+                                     {
+                                         Email = "lili@gmail.com",
+                                         FirstName = "Lili",
+                                         LastName = "Vad",
+                                         Password = "1234"
+                                     },
+                                     new User
+                                     {
+                                         Email = "nano@gmail.com",
+                                         FirstName = "Nandor",
+                                         LastName = "Takats",
+                                         Password = "Nano1"
+                                     },
+                                     new User
+                                     {
+                                         Email = "tea@gmail.com",
+                                         FirstName = "Laci",
+                                         LastName = "Kis",
+                                         Password = "2345"
+                                     },
+                                    new User
+                                    {
+                                        Email = "gabee1987@gmail.com",
+                                        FirstName = "Gabee",
+                                        LastName = "Koncz",
+                                        Password = "6655"
+                                    });
+            }
+        }
+
+        #endregion
+
+
+        #region Seed Giftee Table
+
+        private static void PopulateGiftees(GifteeDbContext context)
+        {
+            // Look for any giftee.
+            if (context.Giftees.Any())
+            {
+                //context.Database.ExecuteSqlCommand("DELETE from Giftees");   // Reset DB entities
+                return;
+            }
+
+            var user = context.Users.SingleOrDefault(u => u.Id == 31052);
+            context.Giftees.AddRange(
+                                    new Giftee
+                                    {
+                                        FirstName = "Virág",
+                                        LastName = "Kis",
+                                        NickName = "tesó",
+                                        Email = "virag.pici@gmail.com",
+                                        UserId = 31052,
+                                        User = user
+                                        
+                                    });
+
+        }
+
+        #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿<h1>New Giftee</h1>
+﻿<h1>New Giftee Form</h1>
 <form>
     <div class="form-group">
         <label for="user">User</label>
@@ -7,12 +7,23 @@
             <option *ngFor="let user of users" value="{{ user.id }}">{{ user.firstName }} {{ user.lastName }}</option>
         </select>
         <label for="giftee">User's Giftee</label>
-        <select id="giftee" class="form-control">
-            <option value=""></option>
-            <option *ngFor="let giftee of giftees" value="{{ giftee.id }}">{{ giftee.firstName }} {{ giftee.lastName }}</option>
-        </select>
+        
+        <ul class="list-group">
+            <!--<li *ngFor="let giftee of giftees" class="list-group-item">
+        <span class="badge badge-primary badge-pill">{{giftee.id}}</span><span class="badge">{{ giftee.email }}</span> {{ giftee.firstName }} {{ giftee.lastName }} Nickname: {{ giftee.nickName }}
+    </li>-->
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let giftee of giftees">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><strong>{{ giftee.firstName }} {{ giftee.lastName }}</strong></h5>
+                    <small class="small" id="nickName">Nickname: {{ giftee.nickName }}</small>
+                    <p>  </p>
+                    <small>Email: {{ giftee.email }}</small>
+                    <span class="badge badge-primary badge-pill pull-right">{{giftee.id}}</span>
+                </div>
+            </a>
+        </ul>
     </div>
-    <h2>Giftee</h2>
+    <h2>Add New Giftee</h2>
     <div class="form-group">
         <label for="firstName">First Name</label>
         <input id="firstName" type="text" value="" class="form-control" />

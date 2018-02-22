@@ -18,7 +18,6 @@ namespace FromMeToYou.Models
             {
                 PopulateUsers(context);
                 PopulateGiftees(context);
-
                 context.SaveChanges();
             }
         }
@@ -33,31 +32,30 @@ namespace FromMeToYou.Models
                 //context.Database.ExecuteSqlCommand("DELETE from Users");   // Reset DB entities
                 return;
             }
-
             else
             {
                 context.Users.AddRange(
-                                     new User
-                                     {
-                                         Email = "lili@gmail.com",
-                                         FirstName = "Lili",
-                                         LastName = "Vad",
-                                         Password = "1234"
-                                     },
-                                     new User
-                                     {
-                                         Email = "nano@gmail.com",
-                                         FirstName = "Nandor",
-                                         LastName = "Takats",
-                                         Password = "Nano1"
-                                     },
-                                     new User
-                                     {
-                                         Email = "tea@gmail.com",
-                                         FirstName = "Laci",
-                                         LastName = "Kis",
-                                         Password = "2345"
-                                     },
+                                    new User
+                                    {
+                                        Email = "lili@gmail.com",
+                                        FirstName = "Lili",
+                                        LastName = "Vad",
+                                        Password = "1234"
+                                    },
+                                    new User
+                                    {
+                                        Email = "nano@gmail.com",
+                                        FirstName = "Nandor",
+                                        LastName = "Takats",
+                                        Password = "Nano1"
+                                    },
+                                    new User
+                                    {
+                                        Email = "tea@gmail.com",
+                                        FirstName = "Laci",
+                                        LastName = "Kis",
+                                        Password = "2345"
+                                    },
                                     new User
                                     {
                                         Email = "gabee1987@gmail.com",
@@ -66,6 +64,7 @@ namespace FromMeToYou.Models
                                         Password = "6655"
                                     });
             }
+            context.SaveChanges();
         }
 
         #endregion
@@ -81,83 +80,89 @@ namespace FromMeToYou.Models
                 //context.Database.ExecuteSqlCommand("DELETE from Giftees");   // Reset DB entities
                 return;
             }
-            
-            var user1 = context.Users.SingleOrDefault(u => u.Id == 12010);
-            var user2 = context.Users.SingleOrDefault(u => u.Id == 12011);
-            var user3 = context.Users.SingleOrDefault(u => u.Id == 12012);
-            var user4 = context.Users.SingleOrDefault(u => u.Id == 12013);
-            context.Giftees.AddRange(
-                                    new Giftee
-                                    {
-                                        FirstName = "Virág",
-                                        LastName = "Kis",
-                                        NickName = "tesó",
-                                        Email = "virag.pici@gmail.com",
-                                        UserId = 12012,
-                                        User = user4
 
-                                    },
-                                    new Giftee
-                                    {
-                                        FirstName = "Ben",
-                                        LastName = "Uncle",
-                                        NickName = "riceKing",
-                                        Email = "ben.uncle@gmail.com",
-                                        UserId = 12010,
-                                            
+            else
+            {
+                var user1 = context.Users.SingleOrDefault(u => u.Id == 12030);
+                var user2 = context.Users.SingleOrDefault(u => u.Id == 12031);
+                var user3 = context.Users.SingleOrDefault(u => u.Id == 12032);
+                var user4 = context.Users.SingleOrDefault(u => u.Id == 12033);
 
-                                    },
-                                    new Giftee
-                                    {
-                                        FirstName = "Tony",
-                                        LastName = "Stark",
-                                        NickName = "IronMan",
-                                        Email = "tony.stark@gmail.com",
-                                        UserId = 12011,
-                                            
+                context.Giftees.AddRange(
+                                        new Giftee
+                                        {
+                                            FirstName = "Virág",
+                                            LastName = "Kis",
+                                            NickName = "tesó",
+                                            Email = "virag.pici@gmail.com",
+                                            UserId = 12032,
+                                            //User = user3
 
-                                    },
-                                    new Giftee
-                                    {
-                                        FirstName = "Steven",
-                                        LastName = "Rogers",
-                                        NickName = "captain",
-                                        Email = "steven.rogers@gmail.com",
-                                        UserId = 12011,
-                                            
+                                        },
+                                        new Giftee
+                                        {
+                                            FirstName = "Ben",
+                                            LastName = "Uncle",
+                                            NickName = "riceKing",
+                                            Email = "ben.uncle@gmail.com",
+                                            UserId = 12030,
+                                            //User = user1
 
-                                    },
-                                    new Giftee
-                                    {
-                                        FirstName = "Bruce",
-                                        LastName = "Banner",
-                                        NickName = "hulk",
-                                        Email = "bruce.banner@gmail.com",
-                                        UserId = 12011,
-                                            
+                                        },
+                                        new Giftee
+                                        {
+                                            FirstName = "Tony",
+                                            LastName = "Stark",
+                                            NickName = "IronMan",
+                                            Email = "tony.stark@gmail.com",
+                                            UserId = 12031,
+                                            //User = user2
 
-                                    },
-                                    new Giftee
-                                    {
-                                        FirstName = "Steven",
-                                        LastName = "Strange",
-                                        NickName = "Mr.Dr",
-                                        Email = "dr.mr@gmail.com",
-                                        UserId = 12013,
-                                            
+                                        },
+                                        new Giftee
+                                        {
+                                            FirstName = "Steven",
+                                            LastName = "Rogers",
+                                            NickName = "captain",
+                                            Email = "steven.rogers@gmail.com",
+                                            UserId = 12031,
+                                            //User = user2
 
-                                    },
-                                    new Giftee
-                                    {
-                                        FirstName = "Wanda",
-                                        LastName = "Maximoff",
-                                        NickName = "witch",
-                                        Email = "wanda.witch@gmail.com",
-                                        UserId = 12013,
-                                            
+                                        },
+                                        new Giftee
+                                        {
+                                            FirstName = "Bruce",
+                                            LastName = "Banner",
+                                            NickName = "hulk",
+                                            Email = "bruce.banner@gmail.com",
+                                            UserId = 12031,
+                                            //User = user2
 
-                                    });
-            
+                                        },
+                                        new Giftee
+                                        {
+                                            FirstName = "Steven",
+                                            LastName = "Strange",
+                                            NickName = "Mr.Dr",
+                                            Email = "dr.mr@gmail.com",
+                                            UserId = 12033,
+                                            //User = user4
+
+                                        },
+                                        new Giftee
+                                        {
+                                            FirstName = "Wanda",
+                                            LastName = "Maximoff",
+                                            NickName = "witch",
+                                            Email = "wanda.witch@gmail.com",
+                                            UserId = 12033,
+                                            //User = user4
+
+                                        });
+            }
+
+            context.SaveChanges();
+
         }
 
         #endregion

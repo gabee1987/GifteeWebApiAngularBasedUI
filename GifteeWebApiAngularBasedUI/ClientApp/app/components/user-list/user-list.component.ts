@@ -10,16 +10,16 @@ import { UserListService } from '../../services/userList.service';
 })
 export class UserListComponent implements OnInit {
     users: any = [];
-    user: any = {};
+    giftee: any = {};
 
     
 
     constructor(private userListService: UserListService) { }
 
-    ngOnInit() {
+    ngOnInit()
+    {
         this.userListService.getUsers().subscribe(users =>
             this.users = users);
         console.log("USERS", this.users);
     }
-
 }

@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\giftee-form\giftee-form.component.ts" />
     <None Remove="ClientApp\app\services\userList.service.ts" />
   </ItemGroup>
 
@@ -31,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\giftee-form\giftee-form.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\userList.service.ts" />
   </ItemGroup>
 

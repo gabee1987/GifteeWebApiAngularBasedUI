@@ -10,10 +10,6 @@ namespace GifteeWebApiAngularBasedUI.Context
 {
     public class GifteeDbContext : DbContext
     {
-        public GifteeDbContext(DbContextOptions<GifteeDbContext> options)
-            : base(options)
-        {
-        }
 
         #region DbSets
 
@@ -23,5 +19,16 @@ namespace GifteeWebApiAngularBasedUI.Context
         public DbSet<Gift> Gifts { get; set; }
 
         #endregion
+
+        public GifteeDbContext(DbContextOptions<GifteeDbContext> options)
+            : base(options)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Giftee>().HasKey(g =>
+                new { g.UserId, g.Id });
+        }
     }
 }

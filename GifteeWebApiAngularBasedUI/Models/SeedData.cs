@@ -81,8 +81,11 @@ namespace FromMeToYou.Models
                 //context.Database.ExecuteSqlCommand("DELETE from Giftees");   // Reset DB entities
                 return;
             }
-
-            var user = context.Users.SingleOrDefault(u => u.Id == 31052);
+            
+            var user1 = context.Users.SingleOrDefault(u => u.Id == 12010);
+            var user2 = context.Users.SingleOrDefault(u => u.Id == 12011);
+            var user3 = context.Users.SingleOrDefault(u => u.Id == 12012);
+            var user4 = context.Users.SingleOrDefault(u => u.Id == 12013);
             context.Giftees.AddRange(
                                     new Giftee
                                     {
@@ -90,11 +93,71 @@ namespace FromMeToYou.Models
                                         LastName = "Kis",
                                         NickName = "tesó",
                                         Email = "virag.pici@gmail.com",
-                                        UserId = 31052,
-                                        User = user
-                                        
-                                    });
+                                        UserId = 12012,
+                                        User = user4
 
+                                    },
+                                    new Giftee
+                                    {
+                                        FirstName = "Ben",
+                                        LastName = "Uncle",
+                                        NickName = "riceKing",
+                                        Email = "ben.uncle@gmail.com",
+                                        UserId = 12010,
+                                            
+
+                                    },
+                                    new Giftee
+                                    {
+                                        FirstName = "Tony",
+                                        LastName = "Stark",
+                                        NickName = "IronMan",
+                                        Email = "tony.stark@gmail.com",
+                                        UserId = 12011,
+                                            
+
+                                    },
+                                    new Giftee
+                                    {
+                                        FirstName = "Steven",
+                                        LastName = "Rogers",
+                                        NickName = "captain",
+                                        Email = "steven.rogers@gmail.com",
+                                        UserId = 12011,
+                                            
+
+                                    },
+                                    new Giftee
+                                    {
+                                        FirstName = "Bruce",
+                                        LastName = "Banner",
+                                        NickName = "hulk",
+                                        Email = "bruce.banner@gmail.com",
+                                        UserId = 12011,
+                                            
+
+                                    },
+                                    new Giftee
+                                    {
+                                        FirstName = "Steven",
+                                        LastName = "Strange",
+                                        NickName = "Mr.Dr",
+                                        Email = "dr.mr@gmail.com",
+                                        UserId = 12013,
+                                            
+
+                                    },
+                                    new Giftee
+                                    {
+                                        FirstName = "Wanda",
+                                        LastName = "Maximoff",
+                                        NickName = "witch",
+                                        Email = "wanda.witch@gmail.com",
+                                        UserId = 12013,
+                                            
+
+                                    });
+            
         }
 
         #endregion

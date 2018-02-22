@@ -1,1 +1,33 @@
-﻿
+﻿<h1>New Giftee</h1>
+<form>
+    <div class="form-group">
+        <label for="user">User</label>
+        <select id="user" class="form-control" (change)="onMakeChange()" [(ngModel)]="user" name="user">
+            <option value=""></option>
+            <option *ngFor="let user of users" value="{{ user.id }}">{{ user.firstName }} {{ user.lastName }}</option>
+        </select>
+        <label for="giftee">User's Giftee</label>
+        <select id="giftee" class="form-control">
+            <option value=""></option>
+            <option *ngFor="let giftee of giftees" value="{{ giftee.id }}">{{ giftee.firstName }} {{ giftee.lastName }}</option>
+        </select>
+    </div>
+    <h2>Giftee</h2>
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input id="firstName" type="text" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" type="text" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="nicknamme">Nickname</label>
+        <input id="nicknamme" type="text" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="gifteeEmail">Email</label>
+        <input id="gifteeEmail" type="text" value="" class="form-control" />
+    </div>
+    <button class="btn btn-primary">Save</button>
+</form>

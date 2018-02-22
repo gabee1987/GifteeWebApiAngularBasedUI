@@ -10,8 +10,10 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { GifteeFormComponent } from './components/giftee-form/giftee-form.component';
 
 import { UserListService } from './services/userList.service';
+import { GifteeFormService } from './services/giftee-form.service';
 
 @NgModule({
     declarations: [
@@ -20,7 +22,8 @@ import { UserListService } from './services/userList.service';
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        UserListComponent
+        UserListComponent,
+        GifteeFormComponent
     ],
     imports: [
         CommonModule,
@@ -30,13 +33,15 @@ import { UserListService } from './services/userList.service';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'users/get', component: UserListComponent },
+            { path: 'giftee/new', component: GifteeFormComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ],
     providers: [
-        UserListService
+        UserListService,
+        GifteeFormService
     ]
 })
 export class AppModuleShared {

@@ -11,6 +11,6 @@ export class UserListComponent implements OnInit {
     constructor(private userListService: UserListService) { }
 
     ngOnInit() {
-  }
+    }
 
 }

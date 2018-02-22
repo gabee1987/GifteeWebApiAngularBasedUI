@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -30,5 +31,10 @@ namespace GifteeWebApiAngularBasedUI.Models
         public DateTime? BirthDate { get; set; }
 
         public ICollection<Giftee> Giftees { get; set; }
+
+        public User()
+        {
+            Giftees = new Collection<Giftee>();
+        }
     }
 }

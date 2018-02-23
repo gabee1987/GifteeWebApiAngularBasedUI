@@ -25,10 +25,10 @@ namespace GifteeWebApiAngularBasedUI.Context
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Giftee>().HasKey(g =>
-                new { g.UserId, g.Id });
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Giftee>().HasKey(g =>
+        //        new { g.UserId, g.Id });
+        //}
     }
 }

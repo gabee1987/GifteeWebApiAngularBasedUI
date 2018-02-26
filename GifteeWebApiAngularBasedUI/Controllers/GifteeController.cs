@@ -92,5 +92,20 @@ namespace GifteeWebApiAngularBasedUI.Controllers
 
             return Ok(id);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetGiftee(int id)
+        {
+            var giftee = await context.Giftees.FindAsync(id);
+
+            if (giftee == null)
+            {
+                return NotFound();
+            }
+
+
+            var result = mapper.Map<Giftee, GifteeResource>(giftee);
+            return Ok(result);
+        }
     }
 }

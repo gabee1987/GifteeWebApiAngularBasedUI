@@ -18,6 +18,7 @@ namespace GifteeWebApiAngularBasedUI.Mapping
 
             // Api resource to domain class
             CreateMap<GifteeResource, Giftee>()
+                .ForMember(g => g.Id, opt => opt.Ignore())
                 .ForMember(g => g.FirstName, opt => opt.MapFrom(gr => gr.FirstName))
                 .ForMember(g => g.LastName, opt => opt.MapFrom(gr => gr.LastName))
                 .ForMember(g => g.Email, opt => opt.MapFrom(gr => gr.Email))

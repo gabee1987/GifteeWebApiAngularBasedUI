@@ -32,7 +32,7 @@ namespace GifteeWebApiAngularBasedUI.Controllers
             }
 
 
-            //If server side validation is required, check if user is exist
+            //Check if user is exist
             var user = await context.Users.FindAsync(gifteeResource.UserId);
 
             if (user == null)
@@ -45,6 +45,26 @@ namespace GifteeWebApiAngularBasedUI.Controllers
             giftee.User = user;
 
             context.Giftees.Add(giftee);
+            await context.SaveChangesAsync();
+
+            var result = mapper.Map<Giftee, GifteeResource>(giftee);
+            return Ok(result);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateGiftee(int id, [FromBody] GifteeResource gifteeResource)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
+            var giftee = await context.Giftees.FindAsync(id);
+            mapper.Map<GifteeResource, Giftee>(gifteeResource, giftee);
+            //giftee.User = user;
+
             await context.SaveChangesAsync();
 
             var result = mapper.Map<Giftee, GifteeResource>(giftee);

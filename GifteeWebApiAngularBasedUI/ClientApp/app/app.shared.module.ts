@@ -33,7 +33,7 @@ import { GifteeFormService } from './services/giftee-form.service';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'users/get', component: UserListComponent },
-            { path: 'giftee/new', component: GifteeFormComponent },
+            { path: 'giftees/new', component: GifteeFormComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }

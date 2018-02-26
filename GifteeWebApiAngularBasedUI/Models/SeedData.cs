@@ -18,7 +18,6 @@ namespace FromMeToYou.Models
             {
                 PopulateUsers(context);
                 PopulateGiftees(context);
-                context.SaveChanges();
             }
         }
 
@@ -108,8 +107,7 @@ namespace FromMeToYou.Models
                                                 LastName = "Stark",
                                                 NickName = "IronMan",
                                                 Email = "tony.stark@gmail.com",
-                                                UserId = 31054,
-                                                //User = user2
+                                                UserId = 31054
 
                                             },
                                             new Giftee

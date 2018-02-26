@@ -14,7 +14,7 @@ namespace GifteeWebApiAngularBasedUI.Controllers.Resources
         public string LastName { get; set; }
         public string NickName { get; set; }
         public string Email { get; set; }
-        //public int UserId { get; set; }
+        public int UserId { get; set; }
         //public User User { get; set; }
     }
 }

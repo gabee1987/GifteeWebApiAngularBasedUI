@@ -22,8 +22,8 @@ namespace GifteeWebApiAngularBasedUI.Controllers
             this.context = context;
         }
 
-        [HttpPost("/new")]
-        public async Task<IActionResult> CreateGiftee([FromBody] GifteeResource gifteeResource, UserResource userResource)
+        [HttpPost]
+        public async Task<IActionResult> CreateGiftee([FromBody] GifteeResource gifteeResource)
         {
 
             if (!ModelState.IsValid)
@@ -32,17 +32,17 @@ namespace GifteeWebApiAngularBasedUI.Controllers
             }
 
 
-            // If server side validation is required
-            //var user = await context.Users.FindAsync(userResource.Id);
+            //If server side validation is required, check if user is exist
+            var user = await context.Users.FindAsync(gifteeResource.UserId);
 
-            //if (user == null)
-            //{
-            //    ModelState.AddModelError("UserId", "Invalid UserId");
-            //    return BadRequest(ModelState);
-            //}
+            if (user == null)
+            {
+                ModelState.AddModelError("UserId", "Invalid UserId");
+                return BadRequest(ModelState);
+            }
 
             var giftee = mapper.Map<GifteeResource, Giftee>(gifteeResource);
-            //giftee.User = user;
+            giftee.User = user;
 
             context.Giftees.Add(giftee);
             await context.SaveChangesAsync();

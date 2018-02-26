@@ -62,6 +62,12 @@ namespace GifteeWebApiAngularBasedUI.Controllers
 
 
             var giftee = await context.Giftees.FindAsync(id);
+
+            if (giftee == null)
+            {
+                return NotFound();
+            }
+
             mapper.Map<GifteeResource, Giftee>(gifteeResource, giftee);
             //giftee.User = user;
 
@@ -69,6 +75,22 @@ namespace GifteeWebApiAngularBasedUI.Controllers
 
             var result = mapper.Map<Giftee, GifteeResource>(giftee);
             return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteGiftee(int id)
+        {
+            var giftee = await context.Giftees.FindAsync(id);
+
+            if (giftee == null)
+            {
+                return NotFound();
+            }
+
+            context.Remove(giftee);
+            await context.SaveChangesAsync();
+
+            return Ok(id);
         }
     }
 }

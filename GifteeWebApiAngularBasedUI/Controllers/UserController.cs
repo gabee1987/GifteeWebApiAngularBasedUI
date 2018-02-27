@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using GifteeWebApiAngularBasedUI.Persistence;
+using AutoMapper;
 using GifteeWebApiAngularBasedUI.Context;
 using GifteeWebApiAngularBasedUI.Controllers.Resources;
 using GifteeWebApiAngularBasedUI.Models;
@@ -13,21 +14,24 @@ namespace GifteeWebApiAngularBasedUI.Controllers
 {
     public class UserController : Controller
     {
-        private readonly GifteeDbContext context;
         private readonly IMapper mapper;
+        private readonly IUserRepository userRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public UserController(GifteeDbContext context, IMapper mapper)
+        public UserController(IMapper mapper, IUserRepository userRepository, IUnitOfWork unitOfWork)
         {
-            this.context = context;
             this.mapper = mapper;
+            this.userRepository = userRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpGet("/api/users")]
         public async Task<IEnumerable<UserResource>> GetUsers()
         {
-            var users = await context.Users.Include(u => u.Giftees).ToListAsync();
+            var users = await userRepository.GetAllUsersAsync(includeRelatedGiftees: false);
+            var userList = users.ToList();
 
-            return mapper.Map<List<User>, List<UserResource>>(users);
+            return mapper.Map<List<User>, List<UserResource>>(userList);
         }
     }
 }

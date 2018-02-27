@@ -1,3 +1,4 @@
+using GifteeWebApiAngularBasedUI.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,13 @@ namespace GifteeWebApiAngularBasedUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Scoped services (A single instance of repository for each request)
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IGifteeRepository, GifteeRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             // Add Database context
             var connString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=GifteeDB;Integrated Security=True;Connect Timeout=30;";
-
             services.AddDbContext<GifteeDbContext>(options => options.UseSqlServer(connString));
 
             // Add framework services

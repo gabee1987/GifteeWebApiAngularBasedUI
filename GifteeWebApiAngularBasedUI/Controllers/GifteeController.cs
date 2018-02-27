@@ -1,4 +1,5 @@
-﻿using GifteeWebApiAngularBasedUI.Models;
+﻿using GifteeWebApiAngularBasedUI.Persistence;
+using GifteeWebApiAngularBasedUI.Models;
 using AutoMapper;
 using GifteeWebApiAngularBasedUI.Context;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GifteeWebApiAngularBasedUI.Controllers.Resources;
+using Microsoft.EntityFrameworkCore;
 
 namespace GifteeWebApiAngularBasedUI.Controllers
 {
@@ -14,12 +16,16 @@ namespace GifteeWebApiAngularBasedUI.Controllers
     public class GifteeController : Controller
     {
         private readonly IMapper mapper;
-        private readonly GifteeDbContext context;
+        private readonly IGifteeRepository gifteeRepository;
+        private readonly IUserRepository userRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public GifteeController(IMapper mapper, GifteeDbContext context)
+        public GifteeController(IMapper mapper, IGifteeRepository gifteeRepository, IUserRepository userRepository, IUnitOfWork unitOfWork)
         {
             this.mapper = mapper;
-            this.context = context;
+            this.gifteeRepository = gifteeRepository;
+            this.userRepository = userRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         [HttpPost]
@@ -33,7 +39,7 @@ namespace GifteeWebApiAngularBasedUI.Controllers
 
 
             //Check if user is exist
-            var user = await context.Users.FindAsync(gifteeResource.UserId);
+            var user = await userRepository.GetUserAsync(gifteeResource.UserId, includeRelatedGiftees: false);
 
             if (user == null)
             {
@@ -44,8 +50,8 @@ namespace GifteeWebApiAngularBasedUI.Controllers
             var giftee = mapper.Map<GifteeResource, Giftee>(gifteeResource);
             giftee.User = user;
 
-            context.Giftees.Add(giftee);
-            await context.SaveChangesAsync();
+            gifteeRepository.AddGiftee(giftee);
+            await unitOfWork.CompleteAsync();
 
             var result = mapper.Map<Giftee, GifteeResource>(giftee);
             return Ok(result);
@@ -61,7 +67,7 @@ namespace GifteeWebApiAngularBasedUI.Controllers
             }
 
 
-            var giftee = await context.Giftees.FindAsync(id);
+            var giftee = await gifteeRepository.GetGifteeAsync(id, includeRelatedUser: false);
 
             if (giftee == null)
             {
@@ -69,9 +75,8 @@ namespace GifteeWebApiAngularBasedUI.Controllers
             }
 
             mapper.Map<GifteeResource, Giftee>(gifteeResource, giftee);
-            //giftee.User = user;
 
-            await context.SaveChangesAsync();
+            await unitOfWork.CompleteAsync();
 
             var result = mapper.Map<Giftee, GifteeResource>(giftee);
             return Ok(result);
@@ -80,15 +85,15 @@ namespace GifteeWebApiAngularBasedUI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGiftee(int id)
         {
-            var giftee = await context.Giftees.FindAsync(id);
+            var giftee = await gifteeRepository.GetGifteeAsync(id, includeRelatedUser: false);
 
             if (giftee == null)
             {
                 return NotFound();
             }
 
-            context.Remove(giftee);
-            await context.SaveChangesAsync();
+            gifteeRepository.RemoveGiftee(giftee);
+            await unitOfWork.CompleteAsync();
 
             return Ok(id);
         }
@@ -96,7 +101,7 @@ namespace GifteeWebApiAngularBasedUI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGiftee(int id)
         {
-            var giftee = await context.Giftees.FindAsync(id);
+            var giftee = await gifteeRepository.GetGifteeAsync(id, includeRelatedUser: true);
 
             if (giftee == null)
             {

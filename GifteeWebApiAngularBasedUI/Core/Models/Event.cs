@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace GifteeWebApiAngularBasedUI.Models
+namespace GifteeWebApiAngularBasedUI.Core.Models
 {
     [Table("Events")]
     public class Event

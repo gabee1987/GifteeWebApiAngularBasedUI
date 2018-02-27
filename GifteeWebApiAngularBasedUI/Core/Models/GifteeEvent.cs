@@ -1,11 +1,6 @@
-﻿using GifteeWebApiAngularBasedUI.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GifteeWebApiAngularBasedUI.Models
+namespace GifteeWebApiAngularBasedUI.Core.Models
 {
     [Table("GifteesEvents")]
     public class GifteeEvent

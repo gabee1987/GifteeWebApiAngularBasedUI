@@ -1,12 +1,7 @@
-﻿using FromMeToYou.Models;
-using GifteeWebApiAngularBasedUI.Models;
+﻿using GifteeWebApiAngularBasedUI.Core.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace GifteeWebApiAngularBasedUI.Context
+namespace GifteeWebApiAngularBasedUI.Persistence
 {
     public class GifteeDbContext : DbContext
     {

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace GifteeWebApiAngularBasedUI.Controllers
 {
+    [Route("/api/users")]
     public class UserController : Controller
     {
         private readonly IMapper mapper;
@@ -25,13 +26,27 @@ namespace GifteeWebApiAngularBasedUI.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        [HttpGet("/api/users")]
+        [HttpGet]
         public async Task<IEnumerable<UserResource>> GetUsers()
         {
-            var users = await userRepository.GetAllUsersAsync(includeRelatedGiftees: false);
+            var users = await userRepository.GetAllUsersAsync(includeRelatedGiftees: true);
             var userList = users.ToList();
 
             return mapper.Map<List<User>, List<UserResource>>(userList);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            var user = await userRepository.GetUserAsync(id, includeRelatedGiftees: true);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var result = mapper.Map<User, UserResource>(user);
+            return Ok(result);
         }
     }
 }

@@ -1,14 +1,9 @@
-﻿using GifteeWebApiAngularBasedUI.Persistence;
-using GifteeWebApiAngularBasedUI.Models;
-using AutoMapper;
-using GifteeWebApiAngularBasedUI.Context;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using GifteeWebApiAngularBasedUI.Controllers.Resources;
-using Microsoft.EntityFrameworkCore;
+using GifteeWebApiAngularBasedUI.Core;
+using GifteeWebApiAngularBasedUI.Core.Models;
 
 namespace GifteeWebApiAngularBasedUI.Controllers
 {

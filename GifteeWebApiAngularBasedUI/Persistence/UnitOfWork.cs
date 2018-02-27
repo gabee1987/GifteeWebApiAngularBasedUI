@@ -1,7 +1,4 @@
-﻿using GifteeWebApiAngularBasedUI.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using GifteeWebApiAngularBasedUI.Core;
 using System.Threading.Tasks;
 
 namespace GifteeWebApiAngularBasedUI.Persistence

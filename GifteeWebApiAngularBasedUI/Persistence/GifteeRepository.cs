@@ -1,10 +1,7 @@
-﻿using GifteeWebApiAngularBasedUI.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GifteeWebApiAngularBasedUI.Models;
+﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using GifteeWebApiAngularBasedUI.Core;
+using GifteeWebApiAngularBasedUI.Core.Models;
 
 namespace GifteeWebApiAngularBasedUI.Persistence
 {

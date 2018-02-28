@@ -27,9 +27,15 @@ export class GifteeFormComponent implements OnInit {
         console.log("USERS", this.users);
     }
 
-    onMakeChange() {
+    onUserChange() {
         console.log("GIFTEE", this.user.giftees);
         var selectedUser = this.users.find(u => u.id == this.user)
         this.giftees = selectedUser ? selectedUser.giftees : [];
+        this.giftee.userId = selectedUser ? selectedUser.id : undefined;
+    }
+
+    submit() {
+        this.gifteeFormService.createGiftee(this.giftee)
+            .subscribe(x => console.log(x));
     }
 }

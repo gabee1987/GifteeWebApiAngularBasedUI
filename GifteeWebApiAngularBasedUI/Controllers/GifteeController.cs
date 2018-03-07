@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using GifteeWebApiAngularBasedUI.Controllers.Resources;
 using GifteeWebApiAngularBasedUI.Core;
 using GifteeWebApiAngularBasedUI.Core.Models;
+using System;
 
 namespace GifteeWebApiAngularBasedUI.Controllers
 {
@@ -26,7 +27,7 @@ namespace GifteeWebApiAngularBasedUI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateGiftee([FromBody] GifteeResource gifteeResource)
         {
-
+            throw new Exception();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

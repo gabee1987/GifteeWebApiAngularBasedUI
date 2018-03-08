@@ -37,6 +37,7 @@ import { AppErrorHandler } from './app.error-handler';
             { path: 'home', component: HomeComponent },
             { path: 'users/get', component: UserListComponent },
             { path: 'giftees/new', component: GifteeFormComponent },
+            { path: 'giftees/:id', component: GifteeFormComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }

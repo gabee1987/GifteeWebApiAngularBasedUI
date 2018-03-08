@@ -16,4 +16,9 @@ export class GifteeFormService {
         return this.http.post('/api/giftees', giftee)
             .map(res => res.json());
     }
+
+    getGiftee(id) {
+        return this.http.get('/api/giftees/' + id)
+            .map(res => res.json());
+    }
 }

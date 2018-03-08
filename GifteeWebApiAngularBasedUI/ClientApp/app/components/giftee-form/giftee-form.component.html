@@ -1,5 +1,5 @@
 ﻿<!--<link href="style-bootstrap.css" rel="stylesheet">-->
-
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
 <h1>New Giftee Form</h1>
 <p>
     {{ giftee | json }}
@@ -16,8 +16,14 @@
         <label for="giftee">User's Giftees</label>
 
         <ul class="list-group">
-            <li *ngFor="let giftee of giftees" class="list-group-item">
-                <span class="badge badge-primary badge-pill">{{giftee.id}}</span><span class="badge">{{ giftee.email }}</span>Name: <strong>{{ giftee.firstName }} {{ giftee.lastName }}</strong> Nickname: <strong>{{ giftee.nickName }}</strong>
+            <li *ngFor="let giftee of giftees" class="list-group-item clearfix">
+                Name: <strong>{{ giftee.firstName }} {{ giftee.lastName }}</strong> 
+                Nickname: <strong>{{ giftee.nickName }}</strong>
+                Email: <strong>{{ giftee.email }}</strong>
+                Id: <strong>{{ giftee.id }}</strong>
+                <span class="pull-right">
+                        <a class="btn btn-primary" aria-hidden="true" href="/giftees/{{ giftee.id }}">Edit</a>
+                </span>
             </li>
             <!--<a href="#" class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let giftee of giftees">
                 <div class="d-flex w-100 justify-content-between">

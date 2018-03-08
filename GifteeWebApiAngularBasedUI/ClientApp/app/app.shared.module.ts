@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ToastyModule, ToastyService } from 'ng2-toasty';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -32,6 +33,7 @@ import { AppErrorHandler } from './app.error-handler';
         HttpModule,
         FormsModule,
         ToastyModule.forRoot(),
+        SimpleNotificationsModule.forRoot(),
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },

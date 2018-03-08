@@ -4,6 +4,7 @@ import { GifteeFormService } from '../../services/giftee-form.service';
 import { UserListService } from '../../services/userList.service';
 import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
     selector: 'app-giftee-form',
@@ -20,7 +21,8 @@ export class GifteeFormComponent implements OnInit {
         private gifteeFormService: GifteeFormService,
         private userListService: UserListService,
         private toastyService: ToastyService,
-        private toastyConfig: ToastyConfig)
+        private toastyConfig: ToastyConfig,
+        private notificationService: NotificationsService)
     {
         this.toastyConfig.theme = 'bootstrap';
         route.params.subscribe(p => {
@@ -41,10 +43,10 @@ export class GifteeFormComponent implements OnInit {
         this.gifteeFormService.getGiftee(this.giftee.id)
             .subscribe(g => {
                 this.giftee = g;
-            }, err => {
-                if (err.status == 404) {
-                    this.router.navigate(['/not-found']);
-                }
+            //}, err => {
+            //    if (err.status == 404) {
+            //        this.router.navigate(['/not-found']);
+            //    }
             });
 
         this.userListService.getUsers().subscribe(users =>
@@ -60,8 +62,24 @@ export class GifteeFormComponent implements OnInit {
     }
 
     submit() {
-        this.gifteeFormService.createGiftee(this.giftee)
-            .subscribe(x => console.log(x));
+        if (this.giftee.id) {
+            this.gifteeFormService.updateGiftee(this.giftee)
+                .subscribe(x => {
+                    this.toastyService.success({
+                        title: 'Success',
+                        msg: 'The giftee was sucessfully updated.',
+                        theme: 'bootstrap',
+                        showClose: true,
+                        timeout: 5000
+                    });
+                });
+            this.router.navigate(['/giftees/new']);
+        }
+        else {
+            this.gifteeFormService.createGiftee(this.giftee)
+                .subscribe(x => console.log(x));
+        }
+
     }
 
     //initToast() {

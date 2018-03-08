@@ -2,7 +2,7 @@
 
 import { GifteeFormService } from '../../services/giftee-form.service';
 import { UserListService } from '../../services/userList.service';
-import { ToastyService } from 'ng2-toasty';
+import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty';
 
 @Component({
     selector: 'app-giftee-form',
@@ -11,9 +11,12 @@ import { ToastyService } from 'ng2-toasty';
 })
 export class GifteeFormComponent implements OnInit {
 
+    //public toastOptions: ToastOptions;
+
     constructor(private gifteeFormService: GifteeFormService,
                 private userListService: UserListService,
-                private toastyService: ToastyService) { }
+                private toastyService: ToastyService,
+                private toastyConfig: ToastyConfig) { this.toastyConfig.theme = 'bootstrap'; }
 
     users: any[];
     user: any = {};
@@ -38,15 +41,24 @@ export class GifteeFormComponent implements OnInit {
 
     submit() {
         this.gifteeFormService.createGiftee(this.giftee)
-            .subscribe(x => console.log(x),
-            err => {
-                this.toastyService.error({
-                    title: 'Error',
-                    msg: 'An unexpected error happened.',
-                    theme: 'bootstrap',
-                    showClose: true,
-                    timeout: 5000
-                })
-            });
+            .subscribe(x => console.log(x));
     }
+
+    //initToast() {
+    //    this.toastyConfig.theme = 'bootstrap';
+    //    this.toastyConfig.position = "top-right";
+    //    this.toastOptions = {
+    //        title: "",
+    //        msg: "",
+    //        showClose: true,
+    //        timeout: 5000,
+    //        theme: "bootstrap",
+    //        onAdd: (toast: ToastData) => {
+    //            console.log('Toast ' + toast.id + ' has been added!');
+    //        },
+    //        onRemove: function (toast: ToastData) {
+    //            console.log('Toast ' + toast.id + ' has been removed!');
+    //        }
+    //    };
+    //}
 }

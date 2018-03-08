@@ -14,7 +14,7 @@ const treeShakableModules = [
     '@angular/router',
     'zone.js',
     'ng2-toasty',
-    'ng2-toasty/bundles/style-bootstrap.css'
+    
 ];
 const nonTreeShakableModules = [
     'bootstrap',
@@ -23,6 +23,7 @@ const nonTreeShakableModules = [
     'es6-shim',
     'event-source-polyfill',
     'jquery',
+    'ng2-toasty/bundles/style-bootstrap.css'
 ];
 const allModules = treeShakableModules.concat(nonTreeShakableModules);
 
@@ -37,6 +38,12 @@ module.exports = (env) => {
                 { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' }
             ]
         },
+        //entry: {
+        //    vendor: [
+        //        'ng2-toasty',
+        //        'ng2-toasty/bundles/style-bootstrap.css',
+        //    ]
+        //},
         output: {
             publicPath: 'dist/',
             filename: '[name].js',

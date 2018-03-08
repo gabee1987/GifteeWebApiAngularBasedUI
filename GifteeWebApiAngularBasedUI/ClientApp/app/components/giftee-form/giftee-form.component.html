@@ -1,4 +1,6 @@
-﻿<h1>New Giftee Form</h1>
+﻿<!--<link href="style-bootstrap.css" rel="stylesheet">-->
+
+<h1>New Giftee Form</h1>
 <p>
     {{ giftee | json }}
 </p>
@@ -31,7 +33,7 @@
     <h2>Add New Giftee</h2>
     <div class="form-group">
         <label for="firstName">First Name</label>
-        <input id="firstName" type="text" value="" class="form-control" [(ngModel)]="giftee.firstName" name="firstName" required #firstName="ngModel"/>
+        <input id="firstName" type="text" value="" class="form-control" [(ngModel)]="giftee.firstName" name="firstName" required #firstName="ngModel" />
         <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid" name="firstNameAlert">Please enter a name.</div>
     </div>
     <div class="form-group">
@@ -41,12 +43,12 @@
     </div>
     <div class="form-group">
         <label for="nicknamme">Nickname</label>
-        <input id="nicknamme" type="text" value="" class="form-control" [(ngModel)]="giftee.nickName" name="nickName"/>
+        <input id="nicknamme" type="text" value="" class="form-control" [(ngModel)]="giftee.nickName" name="nickName" />
     </div>
     <div class="form-group">
         <label for="gifteeEmail">Email</label>
         <input id="gifteeEmail" type="text" value="" class="form-control" [(ngModel)]="giftee.email" name="gifteeEmail" required #gifteeEmail="ngModel" />
         <div class="alert alert-danger" *ngIf="gifteeEmail.touched && !gifteeEmail.valid" name="gifteeEmailAlert">Please enter an email.</div>
     </div>
-    <button class="btn btn-primary" >Save</button>
+    <button class="btn btn-primary">Save</button>
 </form>

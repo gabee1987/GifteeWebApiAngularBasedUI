@@ -27,7 +27,7 @@ namespace GifteeWebApiAngularBasedUI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateGiftee([FromBody] GifteeResource gifteeResource)
         {
-            throw new Exception();
+            //throw new Exception();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

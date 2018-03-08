@@ -16,7 +16,10 @@ export class GifteeFormComponent implements OnInit {
     constructor(private gifteeFormService: GifteeFormService,
                 private userListService: UserListService,
                 private toastyService: ToastyService,
-                private toastyConfig: ToastyConfig) { this.toastyConfig.theme = 'bootstrap'; }
+                private toastyConfig: ToastyConfig) {
+        this.toastyConfig.theme = 'bootstrap';
+        
+    }
 
     users: any[];
     user: any = {};

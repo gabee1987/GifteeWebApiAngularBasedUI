@@ -19,7 +19,7 @@ export class GifteeFormService {
 
     getGiftee(id) {
         return this.http.get('/api/giftees/' + id)
-            .map(res => res.json());
+            .map(res => res.json()); 
     }
 
     updateGiftee(giftee) {

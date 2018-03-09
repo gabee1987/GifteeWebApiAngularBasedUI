@@ -4,7 +4,7 @@ import { GifteeFormService } from '../../services/giftee-form.service';
 import { UserListService } from '../../services/userList.service';
 import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationsService } from 'angular2-notifications';
+//import { NotificationsService } from 'angular2-notifications';
 
 @Component({
     selector: 'app-giftee-form',
@@ -21,8 +21,8 @@ export class GifteeFormComponent implements OnInit {
         private gifteeFormService: GifteeFormService,
         private userListService: UserListService,
         private toastyService: ToastyService,
-        private toastyConfig: ToastyConfig,
-        private notificationService: NotificationsService)
+        private toastyConfig: ToastyConfig
+        /*private notificationService: NotificationsService*/)
     {
         this.toastyConfig.theme = 'bootstrap';
         route.params.subscribe(p => {
